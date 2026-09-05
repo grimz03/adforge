@@ -1,5 +1,0 @@
-generator client { provider = "prisma-client-js" }
-datasource db { provider = "postgresql" url = env("DATABASE_URL") }
-model User { id String @id @default(cuid()) name String email String @unique passwordHash String createdAt DateTime @default(now()) updatedAt DateTime @updatedAt business Business? campaigns Campaign[] }
-model Business { id String @id @default(cuid()) userId String @unique name String logo String? phone String? website String? address String? socials String? description String? createdAt DateTime @default(now()) updatedAt DateTime @updatedAt user User @relation(fields:[userId],references:[id],onDelete:Cascade) }
-model Campaign { id String @id @default(cuid()) userId String business String adType String location String packageName String price Int headline String primaryText String cta String badge String offer String status String @default("Draft") createdAt DateTime @default(now()) updatedAt DateTime @updatedAt user User @relation(fields:[userId],references:[id],onDelete:Cascade) @@index([userId,createdAt]) }
